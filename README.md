@@ -1,2 +1,7 @@
-# SystemVerilog-interleaved-synchronous-FIFO
-Description of High-Throughput and High-Capacity Synchronous FIFO by using SystemVerilog
+# SystemVerilog-interleaved-sync-FIFO
+Description of high-throughput and high-capacity synchronous FIFO by using SystemVerilog
+
+## Feature
+
+## License
+MIT
