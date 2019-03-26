@@ -41,7 +41,7 @@ module single_port_RAM
     input  logic                    wr_en,
     input  logic                    clk);
 
-   logic [RAM_DEPTH-1:0][DATA_WIDTH-1:0] ram;
+   logic [RAM_DEPTH-1:0][DATA_WIDTH-1:0] ram = '{default:0};
    logic [DATA_WIDTH-1:0]                din_r;
    logic [LB_RAM_DEPTH-1:0]              addr_r;
    logic [DATA_WIDTH-1:0]                dout_r;
