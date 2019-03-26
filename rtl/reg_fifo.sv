@@ -46,8 +46,8 @@ module reg_fifo
     input  logic                   clk,
     input  logic                   rstn);
 
-   logic [FIFO_DEPTH-1:0][DATA_WIDTH-1:0] dist_ram;
-   logic [LB_FIFO_DEPTH:0]                waddr_r, raddr_r;
+   logic [FIFO_DEPTH-1:0][DATA_WIDTH-1:0] dist_ram = '{default:0};
+   logic [LB_FIFO_DEPTH-1:0]              waddr_r, raddr_r;
    logic [LB_FIFO_DEPTH:0]                count_r;
    logic                                  in_exec, out_exec;
 
