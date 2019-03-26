@@ -24,7 +24,7 @@
 
 //-----------------------------------------------------------------------------
 // module      : single_port_RAM
-// description :
+// description : 2cycle delay RAM implementation by using Block RAM
 module single_port_RAM
   #(parameter
     /*
