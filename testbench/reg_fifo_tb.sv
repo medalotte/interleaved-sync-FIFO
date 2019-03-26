@@ -81,11 +81,11 @@ module reg_fifo_tb();
       rstn <= 1;
 
       assert(in_ready)
-        else $display("in_ready is not initialized : in_ready = %d", in_ready);
+        else $error("in_ready is not initialized : in_ready = %d", in_ready);
       assert(!out_valid)
-        else $display("out_valid is not initialized : out_valid = %d", out_valid);
+        else $error("out_valid is not initialized : out_valid = %d", out_valid);
       assert(count == 0)
-        else $display("count is not initialized : count = %d", count);
+        else $error("count is not initialized : count = %d", count);
 
       display_status();
       $display("----- input to FIFO -----");
@@ -112,7 +112,7 @@ module reg_fifo_tb();
            $display("verification_fifo.size(): %d", verification_fifo.size());
         end
       assert(!in_ready)
-        else $display("ready is incorrect when fifo is full");
+        else $error("ready is incorrect when fifo is full");
 
       display_status();
       $display("----- output from FIFO -----");
@@ -126,7 +126,7 @@ module reg_fifo_tb();
          repeat(1) @(posedge clk);
 
          assert(out_data == pop_val)
-           else $display("out_data is incorrect : out_data = %d", out_data);
+           else $error("out_data is incorrect : out_data = %d", out_data);
       end
 
       repeat(1) @(posedge clk);
