@@ -114,7 +114,6 @@ module sync_2t_fifo_tb();
       assert(!in_ready)
         else $error("ready is incorrect when fifo is full");
 
-      repeat(2) @(posedge clk);
       display_status();
       $display("----- output from FIFO -----");
       for(int i = 0; i < FIFO_DEPTH; i++) begin
