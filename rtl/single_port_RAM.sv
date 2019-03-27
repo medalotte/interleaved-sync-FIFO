@@ -24,7 +24,7 @@
 
 //-----------------------------------------------------------------------------
 // module      : single_port_RAM
-// description : 2cycle delay RAM implementation by using Block RAM
+// description :
 module single_port_RAM
   #(parameter
     /*
@@ -41,25 +41,20 @@ module single_port_RAM
     input  logic                    wr_en,
     input  logic                    clk);
 
-   logic [RAM_DEPTH-1:0][DATA_WIDTH-1:0] ram = '{default:0};
-   logic [DATA_WIDTH-1:0]                din_r;
-   logic [LB_RAM_DEPTH-1:0]              addr_r;
-   logic [DATA_WIDTH-1:0]                dout_r;
-   logic                                 wr_en_r;
+   logic [DATA_WIDTH-1:0]           ram[RAM_DEPTH-1:0] = '{default:0};
+   logic [DATA_WIDTH-1:0]           din_r;
+   logic [LB_RAM_DEPTH-1:0]         addr_r;
+   logic [DATA_WIDTH-1:0]           dout_r;
+   logic                            wr_en_r;
 
    always_ff @(posedge clk) begin
       din_r   <= din;
       addr_r  <= addr;
+      dout_r  <= ram[addr_r];
       wr_en_r <= wr_en;
-   end
 
-   always_ff @(posedge clk) begin
       if(wr_en_r) begin
          ram[addr_r] <= din_r;
-         dout_r      <= ram[addr_r];
-      end
-      else begin
-         dout_r <= ram[addr_r];
       end
    end
 
