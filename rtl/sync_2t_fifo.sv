@@ -56,7 +56,7 @@ module sync_2t_fifo
 
    logic                            prefetch_fifo_in_valid_q[1:0];
    logic                            prefetch_fifo_in_ready;
-   logic [LB_PREFETCH_FIFO_DEPTH:0] prefetch_fifo_count_r;
+   logic [LB_PREFETCH_FIFO_DEPTH:0] prefetch_fifo_count;
 
    logic                            prefetch_exec;
    logic [2:0]                      prefetch_count;
@@ -74,7 +74,7 @@ module sync_2t_fifo
                                                              .out_valid(out_valid),
                                                              .out_ready(out_ready),
                                                              .clear(clear),
-                                                             .count(prefetch_fifo_count_r),
+                                                             .count(prefetch_fifo_count),
                                                              .clk(clk),
                                                              .rstn(rstn));
 
@@ -84,7 +84,7 @@ module sync_2t_fifo
       in_exec        = in_valid  & in_ready;
       out_exec       = out_valid & out_ready;
       mem_addr       = in_exec ? waddr_r : raddr_r;
-      prefetch_count = prefetch_fifo_count_r + prefetch_fifo_in_valid_q[0] + prefetch_fifo_in_valid_q[1];
+      prefetch_count = prefetch_fifo_count + prefetch_fifo_in_valid_q[0] + prefetch_fifo_in_valid_q[1];
       prefetch_exec  = (!in_exec) & (0 < mem_count_r) & (prefetch_count < PREFETCH_FIFO_DEPTH);
    end
 
