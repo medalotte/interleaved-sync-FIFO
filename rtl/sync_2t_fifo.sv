@@ -88,7 +88,7 @@ module sync_2t_fifo
       prefetch_exec  = (!in_exec) & (0 < mem_count_r) & (prefetch_count < PREFETCH_FIFO_DEPTH);
    end
 
-   always_ff @(posedge clk)
+   always_ff @(posedge clk) begin
      if(!rstn | clear) begin
         fifo_count_r             <= 0;
         waddr_r                  <= 0;
@@ -121,5 +121,6 @@ module sync_2t_fifo
           end
         endcase
      end
+   end
 
 endmodule
