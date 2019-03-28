@@ -2,7 +2,7 @@
 Description of synchronous FIFO that consist of Single Port RAM for FPGA implementation by using SystemVerilog
 
 ## Feature
-- **It is not practical because this module was created experimentally**
+- **This module is not practical because it was created experimentally**
 - **Only use Single Port RAM**
     - In general, FIFO use Dual Port RAM
     - Description of synchronous FIFO consist of Dual Port RAM is [here](https://github.com/kyk0910/SystemVerilog-sync-FIFO)
