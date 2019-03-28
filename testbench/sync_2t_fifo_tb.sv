@@ -27,7 +27,7 @@
 // description :
 module sync_2t_fifo_tb();
    localparam DATA_WIDTH    = 8;
-   localparam FIFO_DEPTH    = 4;
+   localparam FIFO_DEPTH    = 16;
    localparam CLK_FREQ      = 100_000_000;
    localparam LB_FIFO_DEPTH = $clog2(FIFO_DEPTH);
 
