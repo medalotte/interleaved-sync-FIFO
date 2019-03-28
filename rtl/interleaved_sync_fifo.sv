@@ -47,7 +47,7 @@ module interleaved_sync_fifo
     input  logic                   out_ready,
 
     /*
-     signal about FIFO status and controll
+     signal about FIFO status and control
      conut : amount of data stored in the FIFO
      clear : clear data in the FIFO
      clk   : clock
@@ -110,8 +110,9 @@ module interleaved_sync_fifo
       out_valid = out_sel ? fifo1_prefetch_valid_r : fifo0_prefetch_valid_r;
       out_data  = out_sel ? fifo1_prefetch_data_r  : fifo0_prefetch_data_r;
       count     = count_r;
-      in_exec   = in_valid  & in_ready;
-      out_exec  = out_valid & out_ready;
+
+      in_exec  = in_valid  & in_ready;
+      out_exec = out_valid & out_ready;
 
       fifo0_in_exec      = in_valid & (in_sel == 0) & !fifo0_in_valid_r;
       fifo0_in_exec_done = fifo0_in_valid_r & fifo0_in_ready;
@@ -144,12 +145,16 @@ module interleaved_sync_fifo
         out_sel <= 0;
      end
      else begin
+        //-----------------------------------------------------------------------------
+        // description about fifo counter
         case({in_exec, out_exec})
           2'b10:   count_r <= count_r + 1;
           2'b01:   count_r <= count_r - 1;
           default: count_r <= count_r;
         endcase
 
+        //-----------------------------------------------------------------------------
+        // description about input
         if(fifo0_in_exec) begin
            fifo0_in_data_r  <= in_data;
            fifo0_in_valid_r <= 1;
@@ -168,6 +173,8 @@ module interleaved_sync_fifo
            fifo1_in_valid_r <= 0;
         end
 
+        //-----------------------------------------------------------------------------
+        // description about output
         if(fifo0_prefetch_exec) begin
            fifo0_prefetch_data_r  <= fifo0_out_data;
            fifo0_prefetch_valid_r <= 1;
@@ -185,6 +192,7 @@ module interleaved_sync_fifo
            fifo1_prefetch_valid_r <= 0;
            out_sel                <= 0;
         end
+
      end
    end
 
