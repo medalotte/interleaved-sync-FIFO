@@ -34,6 +34,8 @@ module reg_fifo
      */
     DATA_WIDTH    = 8,
     FIFO_DEPTH    = 4,
+
+    localparam
     LB_FIFO_DEPTH = $clog2(FIFO_DEPTH))
    (input  logic [DATA_WIDTH-1:0]  in_data,
     input  logic                   in_valid,
