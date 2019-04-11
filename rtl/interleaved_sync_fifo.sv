@@ -35,7 +35,11 @@ module interleaved_sync_fifo
      */
     DATA_WIDTH    = 8,
     FIFO_DEPTH    = 256,
-    LB_FIFO_DEPTH = $clog2(FIFO_DEPTH))
+
+    localparam
+    HALF_FIFO_DEPTH    = FIFO_DEPTH / 2,
+    LB_FIFO_DEPTH      = $clog2(FIFO_DEPTH),
+    LB_HALF_FIFO_DEPTH = $clog2(HALF_FIFO_DEPTH))
    (/*
      data, and control signal based on valid-ready protocol
      */
@@ -57,9 +61,6 @@ module interleaved_sync_fifo
     input  logic                   clear,
     input  logic                   clk,
     input  logic                   rstn);
-
-   localparam HALF_FIFO_DEPTH    = FIFO_DEPTH / 2;
-   localparam LB_HALF_FIFO_DEPTH = $clog2(HALF_FIFO_DEPTH);
 
    logic [LB_FIFO_DEPTH:0]         count_r;
    logic                           in_exec, out_exec;
