@@ -1,4 +1,4 @@
-# SystemVerilog-interleaved-sync-FIFO
+# interleaved-sync-FIFO
 Description of synchronous FIFO that consist of Single Port RAM for FPGA implementation by using SystemVerilog
 
 ## Feature
